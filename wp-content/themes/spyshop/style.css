@@ -1,0 +1,52 @@
+/**
+ * Theme Name:        SpY Shop
+ * Theme URI:         https://github.com/a2-nabil/SpY-Shop-WP-Theme/tree/main/wp-content/themes/spyshop
+ * Description:       it is my practice theme
+ * Version:           1.0.0
+ * Author:            Md. Muhibur Rahman Nabil
+ * Author URI:        https://www.facebook.com/adriyan2nabil
+ * Tags:              e-commerce, block-patterns, full-site-editing, blog, portfolio
+ * Text Domain:       spyShop
+ * Tested up to:      6.4
+ * Requires at least: 6.2
+ * Requires PHP:      7.4
+ * License:           GNU General Public License v2.0 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ */
+
+/* global css  */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* header section css start  */
+.a2n_header {
+  background: gray;
+  max-height: 90px;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+}
+.a2n_header .menu,
+.a2n-right_side {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding-top: 6px;
+}
+.a2n_header .logo {
+  color: #ff2020;
+}
+.a2n_header .menu li > a,
+.a2n-right_side li > a {
+  text-decoration: none;
+  color: #ff2020;
+}
+
+/* header section css end  */
