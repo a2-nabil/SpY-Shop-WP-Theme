@@ -22,9 +22,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+    background: lightsteelblue !important;
+}
 /* header section css start  */
 .a2n_header {
-  background: gray;
+  background: #000;
   max-height: 90px;
   padding: 20px 0;
   position: sticky;
@@ -55,6 +58,7 @@
 .a2n_nxt-container {
   width: 100%;
   max-width: 370px;
+  margin: 0 auto;
   border-radius: 15px;
   background: #fff;
   box-shadow: 0px 0px 50px 0px rgba(35, 28, 79, 0.1);
