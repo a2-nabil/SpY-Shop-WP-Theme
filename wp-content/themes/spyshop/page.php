@@ -1,0 +1,8 @@
+<?php 
+
+echo"new page";
+
+
+
+
+?>
