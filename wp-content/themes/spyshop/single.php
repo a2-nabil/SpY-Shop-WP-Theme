@@ -28,7 +28,7 @@
                         <!-- Preview image figure-->
                         <figure class="mb-4 a2n-single_img">
                             <?php
-                            if (has_post_thumbnail()) {
+                            if (!post_password_required() && has_post_thumbnail()) {
                                 the_post_thumbnail("large", array("class" => "img-fluid rounded"));
                             }
                             ?>

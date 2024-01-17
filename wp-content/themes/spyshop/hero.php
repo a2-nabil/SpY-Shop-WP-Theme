@@ -43,7 +43,7 @@
                     <div class="red-sec hide"></div>
                     <div class="lrb"></div>
                     <div class="lgb"></div>
-                    <div class="l-box">
+                    <div class="l-box" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                         <div class="s-down"><a href="#a2n_projects">go to projects</a></div>
 
                         <div class="social-wrapper">
@@ -55,7 +55,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="intro-box">
+                    <div class="intro-box" data-aos="fade-left">
                         <div class="in-title hide">Reech Studio.</div>
                         <div class="in-txt">We craft brands throught visual content.</div>
                         <div class="in-b-txt hide">Work around you and your team. Work around you and your team.</div>

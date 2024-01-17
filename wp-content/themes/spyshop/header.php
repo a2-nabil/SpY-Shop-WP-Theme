@@ -24,8 +24,8 @@
                     <?php wp_nav_menu(
                         array(
                             'theme_location' => 'primary_menu',
-                            'menu_id' => '',
-                            'menu_class' => 'menu navbar-nav mx-auto mb-2 mb-lg-0',
+                            'menu_id' => 'primary_nav',
+                            'menu_class' => 'menu navbar-nav me-auto mb-2 mb-lg-0',
                         )
                     ); ?>
                 </div>
@@ -35,6 +35,8 @@
                         <li><a href="#">Account</a></li>
                         <li><a href="#">Account</a></li>
                     </ul>
+
+                    
                 </div>
 
             </div>

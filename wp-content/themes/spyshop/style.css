@@ -117,7 +117,7 @@ body::after {
   background: #fff;
 }
 
-.a2n_header .menu ul,
+.a2n_header .menu,
 .a2n_right_side ul {
   display: flex;
   gap: 12px;
@@ -138,12 +138,14 @@ body::after {
   color: #ffff;
   font-size: 14px;
 }
-.a2n_header .menu ul li > a,
+.a2n_header .menu li > a,
 .a2n_right_side ul li > a {
   text-decoration: none;
   color: #ff2020;
 }
-
+.menu-primary-menu-container {
+  margin: 0 auto;
+}
 #navbarSupportedContent.show ul {
   display: block;
 }

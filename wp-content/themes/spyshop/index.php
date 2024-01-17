@@ -11,11 +11,19 @@
                 the_post();
                 ?>
                 <div class="col-lg-4 col-md-6 mt-4">
-                    <div class="a2n_nxt-container">
+                    <div class="a2n_nxt-container" data-aos="fade-up">
                         <div class="nxt-start">
                             <?php
                             if (has_post_thumbnail()) {
+
+                                // $post_thumbnail_url = get_the_post_thumbnail_url(null, "large");
+                                $post_tt = get_the_title();
+                                echo '<a class="a2n_popup" href="#" data-lightbox="image" data-title="' . $post_tt . '">';
+
+                                // printf('<a href="%s" data-lightbox="image" data-title="%s">', $post_thumbnail_url, $post_tt);
+                        
                                 the_post_thumbnail("large", array("class" => "img-fluid"));
+                                echo '</a>';
                             }
                             ?>
                         </div>
@@ -97,8 +105,8 @@
                             </div>
                             <div class="modal-body text-center">
                                 <?php
-                                if (!post_password_required()) {
-                                    the_post_thumbnail('large', array('class' => 'img-fluid'));
+                                if (!post_password_required() && has_post_thumbnail()) {
+                                    the_post_thumbnail("large", array("class" => "img-fluid rounded"));
                                 }
                                 ?>
                                 <div class="my-4">

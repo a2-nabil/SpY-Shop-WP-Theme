@@ -1,12 +1,20 @@
 <?php
 
+
+if (site_url()) {
+    define("VIRSION", time());
+} else {
+    define("VIRSION", wp_get_theme()->get("version"));
+}
+
+
 //  theme bootstrapping 
 function a2n_bootstrapping()
 {
     load_theme_textdomain("spyShop");
     add_theme_support("post-thumbnails");
     add_theme_support("title-tag");
-    register_nav_menu("primary_Menu", __("Primary Menu", "spyShop"));
+    register_nav_menu("primary_menu", __("Primary Menu", "spyShop"));
     register_nav_menu("footer_menu", __("Footer Menu", "spyShop"));
 
 }
@@ -15,18 +23,31 @@ add_action("after_setup_theme", "a2n_bootstrapping");
 // theme all assets 
 function a2n_assets()
 {
-    wp_enqueue_style("spyShop", get_stylesheet_uri());
+    wp_enqueue_style("spyShop", get_stylesheet_uri(), null, VIRSION);
     // Enqueue Bootstrap CSS
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '5.2.3');
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', null, '5.2.3');
     // enqueue fontawesome 
-    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css/fontawesome.min.css', array(), '6.5.1');
+    wp_enqueue_style('fontawesome-css', get_template_directory_uri() . '/assets/css/fontawesome.min.css', null, '6.5.1');
+    // enqueue lightbox 
+    wp_enqueue_style('lightbox-css', get_template_directory_uri() . '/assets/css/lightbox.min.css', null, '2.11.4');
+    // enqueue fontawesome 
+    wp_enqueue_style('aos-css', get_template_directory_uri() . '/assets/css/aos.css', null, '2.3.1');
+
 
     // Enqueue Jquery
-    // wp_enqueue_script('jquery');
+    wp_enqueue_script('jquery', true);
     // Enqueue Bootstrap JS
-    wp_enqueue_script('bootstrap-bundle', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array('jquery'), '5.2.3', true);
+    wp_enqueue_script('bootstrap-bundle', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', null, '5.2.3', true);
     // enqueue fontawesome 
-    wp_enqueue_script('fontawesome-6', get_template_directory_uri() . '/assets/js/fontawesome.min.js', array('jquery'), '6.5.1', true);
+    wp_enqueue_script('fontawesome-js', get_template_directory_uri() . '/assets/js/fontawesome.min.js', null, '6.5.1', true);
+    // enqueue lightbox 
+    wp_enqueue_script('lightbox-js', get_template_directory_uri() . '/assets/js/lightbox.min.js', array('jquery'), '2.11.4', true);
+    // enqueue aos 
+    wp_enqueue_script('aos-js', get_template_directory_uri() . '/assets/js/aos.js', array('jquery'), '2.3.1', true);
+    // enqueue app 
+    wp_enqueue_script('app-js', get_theme_file_uri('/assets/js/app.js'), null, VIRSION, true);
+    // enqueue main 
+    wp_enqueue_script('spyShop-main', get_theme_file_uri('/assets/js/main.js'), array('jquery', 'lightbox-js'), VIRSION, true);
 }
 add_action('wp_enqueue_scripts', 'a2n_assets');
 
@@ -133,10 +154,10 @@ function a2n_protected_title_change()
 add_filter('protected_title_format', 'a2n_protected_title_change');
 
 
-function a2n_menu_item_class($classes, $item)
-{
-    $classes[] = "list-inline-item";
-    return $classes;
-}
+// function a2n_menu_item_class($classes, $item)
+// {
+//     $classes[] = "list-inline-item";
+//     return $classes;
+// }
 
-add_filter('nav_menu_css_class', 'a2n_menu_item_class', 10, 2);
+// add_filter('nav_menu_css_class', 'a2n_menu_item_class', 10, 2);

@@ -2,7 +2,8 @@
     <div class="footer-top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-right" data-aos-offset="200"
+                    data-aos-easing="ease-in-sine">
                     <?php
                     if (is_active_sidebar('footer_1')) {
                         dynamic_sidebar('footer_1');
@@ -18,7 +19,8 @@
                         </ul>
                     </div> -->
                 </div><!-- widget end -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-right" data-aos-offset="300"
+                    data-aos-easing="ease-in-sine">
                     <?php
                     if (is_active_sidebar('footer_2')) {
                         dynamic_sidebar('footer_2');
@@ -36,14 +38,16 @@
                         </ul>
                     </div> -->
                 </div><!-- widget end -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-offset="200"
+                    data-aos-easing="ease-in-sine">
                     <?php
                     if (is_active_sidebar('footer_3')) {
                         dynamic_sidebar('footer_3');
                     }
                     ?>
                 </div><!-- widget end -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-offset="300"
+                    data-aos-easing="ease-in-sine">
                     <?php
                     if (is_active_sidebar('footer_4')) {
                         dynamic_sidebar('footer_4');
@@ -95,11 +99,6 @@
 <?php
 wp_footer();
 ?>
-<script>
-    $('.carousel').carousel({
-        interval: 9000
-    })
-</script>
 </body>
 
 </html>
