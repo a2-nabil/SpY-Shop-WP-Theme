@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<?php get_template_part("hero"); ?>
+<?php get_template_part("/template-parts/common/hero"); ?>
 <!-- post card section start -->
 <div id="a2n_projects" class="a2n_post-section">
     <div class="container mt-5">

@@ -103,15 +103,45 @@
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
-                    <?php if (is_active_sidebar('sidebar-1')) { ?>
-                        <section id="a2n_sidebar">
-                            <?php dynamic_sidebar('sidebar-1'); ?>
-                        </section>
-                    <?php } ?>
+                    <div id="a2n_sidebar">
+                        <div class="side_bar card mb-4">
+                            <?php
+                            if (is_active_sidebar('sidebar-1')) {
+                                dynamic_sidebar('sidebar-1');
+                            }
+                            ?>
+                        </div>
+                        <div class="side_bar card mb-4">
+                            <?php
+                            if (is_active_sidebar('sidebar-2')) {
+                                dynamic_sidebar('sidebar-2');
+                            }
+                            ?>
+                        </div>
+                        <div class="side_bar card mb-4">
+                            <?php
+                            if (is_active_sidebar('sidebar-3')) {
+                                dynamic_sidebar('sidebar-3');
+                            }
+                            ?>
+                        </div>
+                        <div class="side_bar card mb-4">
+                            <?php
+                            if (is_active_sidebar('sidebar-4')) {
+                                dynamic_sidebar('sidebar-4');
+                            }
+                            ?>
+                        </div>
+
+                    </div>
                 </div>
-            <?php } ?>
-        </div>
+
+            </div>
+
+        <?php } ?>
     </div>
 </div>
+</div>
+
 <!-- post card section end -->
 <?php get_footer(); ?>

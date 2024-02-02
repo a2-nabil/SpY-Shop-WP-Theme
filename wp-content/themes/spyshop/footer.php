@@ -38,7 +38,7 @@
                         </ul>
                     </div> -->
                 </div><!-- widget end -->
-                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-offset="200"
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-offset="300"
                     data-aos-easing="ease-in-sine">
                     <?php
                     if (is_active_sidebar('footer_3')) {
@@ -46,7 +46,7 @@
                     }
                     ?>
                 </div><!-- widget end -->
-                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-offset="300"
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-offset="200"
                     data-aos-easing="ease-in-sine">
                     <?php
                     if (is_active_sidebar('footer_4')) {

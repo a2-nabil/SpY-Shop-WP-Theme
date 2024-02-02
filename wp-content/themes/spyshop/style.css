@@ -801,3 +801,12 @@ body::after {
   position: sticky;
   top: 100px;
 }
+.side_bar ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 16px;
+  margin: 0;
+}
+.side_bar > :nth-child(even) {
+  padding: 16px;
+}

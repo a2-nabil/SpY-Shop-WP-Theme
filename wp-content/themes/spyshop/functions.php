@@ -61,12 +61,50 @@ function a2n_sidebar()
             'name' => __('Post Sidebar', 'spyShop'),
             'id' => 'sidebar-1',
             'description' => __('Widgets in this area will be shown on all posts and pages', 'spyShop'),
-            'before_widget' => '<div id="%1$s" class="widget %2$s card mb-4">',
-            'after_widget' => '</div">',
-            'before_title' => '<h2 class="widget-title card-header">',
-            'after_title' => '</h2><div class="card-body">',
+            'before_widget' => '<div id="%1$s" class="widget">',
+            'after_widget' => '',
+            'before_title' => '<h2 class=" card-header">',
+            'after_title' => '</h2> </div>',
         )
     );
+    register_sidebar(
+        array(
+            'name' => __('Post Sidebar_2', 'spyShop'),
+            'id' => 'sidebar-2',
+            'description' => __('Widgets in this area will be shown on all posts and pages', 'spyShop'),
+            'before_widget' => '<div id="%1$s" class="widget">',
+            'after_widget' => '</div">',
+            'before_title' => '<h2 class=" card-header">',
+            'after_title' => '</h2></div>',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => __('Post Sidebar_3', 'spyShop'),
+            'id' => 'sidebar-3',
+            'description' => __('Widgets in this area will be shown on all posts and pages', 'spyShop'),
+            'before_widget' => '<div id="%1$s" class="widget">',
+            'after_widget' => '</div">',
+            'before_title' => '<h2 class="card-header">',
+            'after_title' => '</h2></div>',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => __('Post Sidebar_4', 'spyShop'),
+            'id' => 'sidebar-4',
+            'description' => __('Widgets in this area will be shown on all posts and pages', 'spyShop'),
+            'before_widget' => '<div id="%1$s" class="widget">',
+            'after_widget' => '</div">',
+            'before_title' => '<h2 class="card-header">',
+            'after_title' => '</h2></div>',
+        )
+    );
+
+
+
+
+    // footer area widgets 
     register_sidebar(
         array(
             'name' => __('footer_1', 'spyShop'),
