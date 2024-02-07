@@ -141,7 +141,7 @@ body::after {
 .a2n_header .menu li > a,
 .a2n_right_side ul li > a {
   text-decoration: none;
-  color: #ff2020;
+  /* color: #ff2020; */
 }
 .menu-primary-menu-container {
   margin: 0 auto;
@@ -228,7 +228,7 @@ body::after {
 .lgb {
   position: absolute;
   width: 2.5vw;
-  background-color: #5d5c69 !important;
+  background-color: #000 !important;
   bottom: 0;
   right: 0;
   height: 20vh;
@@ -294,7 +294,7 @@ body::after {
   letter-spacing: -0.01em;
   font-weight: 800;
   line-height: 3.4rem;
-  color: #5d5c69;
+  color: #000;
   width: 70%;
   margin-top: 4vh;
 }
@@ -310,7 +310,7 @@ body::after {
 .in-title {
   margin-bottom: 2vh;
   font-weight: 600;
-  color: #5d5c69;
+  color: #000;
   font-size: 18px;
 }
 .in-title:after {
@@ -326,7 +326,7 @@ body::after {
 .in-b-txt {
   margin-bottom: 6vh;
   font-weight: 400;
-  color: #5d5c69;
+  color: #000;
   font-size: 16px;
   margin-top: 2vh;
   width: 60%;
@@ -441,7 +441,7 @@ body::after {
   -webkit-transition: color 0.15s ease-out;
   -moz-transition: color 0.15s ease-out;
   transition: color 0.15s ease-out;
-  color: #5d5c69 !important;
+  color: #000 !important;
 }
 
 /*.......btn..........*/
@@ -465,8 +465,8 @@ body::after {
   text-decoration: none;
 }
 .button-block--brand {
-  border: 2px solid #5d5c69;
-  color: #5d5c69;
+  border: 2px solid #000;
+  color: #000;
   box-shadow: 2px 2px 0;
 }
 .button-block--brand:hover {

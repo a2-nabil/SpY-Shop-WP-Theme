@@ -2,7 +2,7 @@
 
 <?php get_template_part("/template-parts/common/hero"); ?>
 <!-- post card section start -->
-<div id="a2n_projects" class="a2n_post-section">
+<div id="a2n_projects" class="a2n_post-section page_header">
     <div class="container mt-5">
         <div class="row">
             <?php

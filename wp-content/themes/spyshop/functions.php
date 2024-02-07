@@ -14,6 +14,12 @@ function a2n_bootstrapping()
     load_theme_textdomain("spyShop");
     add_theme_support("post-thumbnails");
     add_theme_support("title-tag");
+    $a2n_custom_header_details = array(
+        'header-text' => true,
+        'default-text-color' => '#ff2020',
+    );
+    add_theme_support("custom-header", $a2n_custom_header_details);
+    add_theme_support("header-text");
     register_nav_menu("primary_menu", __("Primary Menu", "spyShop"));
     register_nav_menu("footer_menu", __("Footer Menu", "spyShop"));
 
@@ -199,3 +205,30 @@ add_filter('protected_title_format', 'a2n_protected_title_change');
 // }
 
 // add_filter('nav_menu_css_class', 'a2n_menu_item_class', 10, 2);
+
+function a2n_page_template_banner()
+{
+    if (!is_page()) {
+        ?>
+        <style>
+            .page_header {
+                background-color: #000;
+            }
+        </style>
+    <?
+    }
+}
+
+add_action("wp_head", "a2n_page_template_banner", 11);
+
+if ( is_front_page() ){
+    if(current_theme_supports("custom-header")){
+        ?>
+        <style>
+            .a2n_header .menu li > a, .a2n_right_side ul li > a {
+                color: #<?php echo get_header_textcolor(); ?> !important;
+            }
+        </style>
+        <?
+    }
+}
