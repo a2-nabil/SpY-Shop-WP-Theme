@@ -19,6 +19,11 @@ function a2n_bootstrapping()
         'default-text-color' => '#ff2020',
     );
     add_theme_support("custom-header", $a2n_custom_header_details);
+    $a2n_custom_logo_default = array(
+        "width" => '100',
+        'height' => '100'
+    );
+    add_theme_support("custom-logo");
     add_theme_support("header-text");
     register_nav_menu("primary_menu", __("Primary Menu", "spyShop"));
     register_nav_menu("footer_menu", __("Footer Menu", "spyShop"));
@@ -217,18 +222,29 @@ function a2n_page_template_banner()
         </style>
     <?
     }
+    if (is_front_page()) {
+        if (current_theme_supports("custom-header")) {
+            ?>
+            <style>
+                .a2n_header .menu li>a,
+                .a2n_right_side ul li>a {
+                    color: #<?php echo get_header_textcolor(); ?> !important;
+                    
+                }
+
+                .logo {
+                    color: #<?php echo get_header_textcolor(); ?> !important;
+                    <?php
+                    if (!display_header_text()) {
+                        echo "display: none;";
+                    }
+                    ?>
+                }
+            </style>
+        <?
+        }
+    }
 }
 
 add_action("wp_head", "a2n_page_template_banner", 11);
 
-if ( is_front_page() ){
-    if(current_theme_supports("custom-header")){
-        ?>
-        <style>
-            .a2n_header .menu li > a, .a2n_right_side ul li > a {
-                color: #<?php echo get_header_textcolor(); ?> !important;
-            }
-        </style>
-        <?
-    }
-}

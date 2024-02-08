@@ -104,8 +104,8 @@ body::after {
 /* header section css start  */
 .a2n_header {
   background: #000;
-  max-height: 90px;
-  padding: 20px 0;
+  max-height: 100px;
+  padding: 10px 0;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -131,7 +131,6 @@ body::after {
   text-decoration: none;
   font-size: 28px;
   font-weight: bolder;
-  color: #ff2020;
 }
 .a2n_tags li a {
   text-decoration: none;
@@ -141,7 +140,6 @@ body::after {
 .a2n_header .menu li > a,
 .a2n_right_side ul li > a {
   text-decoration: none;
-  /* color: #ff2020; */
 }
 .menu-primary-menu-container {
   margin: 0 auto;

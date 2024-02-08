@@ -17,9 +17,15 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a href="<?php echo site_url(); ?>" class="logo">
-                    <?php bloginfo("name"); ?>
-                </a>
+                <div class="logo">
+                    <?php
+                    if( current_theme_supports("custom-logo")){
+                        the_custom_logo();
+                    }else {
+                        bloginfo("name");
+                    }
+                     ?>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <?php wp_nav_menu(
                         array(
