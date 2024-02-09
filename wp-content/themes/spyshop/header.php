@@ -19,21 +19,15 @@
                 </button>
                 <div class="logo">
                     <?php
-                    // if (current_theme_supports("custom-logo")) {
-                    //     bloginfo("name");
+                    if (current_theme_supports("custom-logo")) {
+                        if(has_custom_logo()){
+                            the_custom_logo();
+                        } else {
+                            bloginfo('name');
+                        }
 
-                    // }
+                    }
                     ?>
-                    <?php
-                    if (has_custom_logo()):
-                        the_custom_logo();
-                    else:
-                        ?>
-                        <a class="logo" href="<?php echo esc_url(home_url('/')); ?>">
-                            <?php bloginfo('name'); ?>
-                        </a>
-
-                    <?php endif; ?>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <?php wp_nav_menu(

@@ -24,6 +24,7 @@ function a2n_bootstrapping()
         "height" => '60'
     );
     add_theme_support("custom-logo", $a2n_custom_logo_default);
+    add_theme_support("custom-background");
     add_theme_support("header-text");
     register_nav_menu("primary_menu", __("Primary Menu", "spyShop"));
     register_nav_menu("footer_menu", __("Footer Menu", "spyShop"));
@@ -213,7 +214,7 @@ add_filter('protected_title_format', 'a2n_protected_title_change');
 
 function a2n_page_template_banner()
 {
-    if (!is_page()) {
+    if (is_page()) {
         ?>
         <style>
             .page_header {
