@@ -6,6 +6,9 @@
 <?php
 the_post();
 get_header();
+$placeholder_text = get_post_meta(get_the_ID(), "Placeholder", true);
+$button_text = get_post_meta(get_the_ID(), "Button", true);
+$hint_text = get_post_meta(get_the_ID(), "Hint", true);
 ?>
 <div class="fh5co-loader"></div>
 
@@ -37,9 +40,10 @@ get_header();
                         <div class="col-lg-7 animate-box">
                             <form action="#" id="fh5co-subscribe">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter your email">
-                                    <input type="submit" value="Send" class="btn btn-primary">
-                                    <p class="tip">Please enter your email address for early access.</p>
+                                    <input type="text" class="form-control"
+                                        placeholder="<?php echo esc_attr($placeholder_text); ?>">
+                                    <input type="submit" value="<?php echo esc_attr($button_text); ?>" class="btn btn-primary">
+                                    <p class="tip"><?php echo esc_html($hint_text); ?></p>
                                 </div>
                             </form>
                         </div>

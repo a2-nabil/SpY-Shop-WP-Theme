@@ -75,6 +75,15 @@ function a2n_assets()
     // enqueue main 
     wp_enqueue_script('spyShop-main', get_theme_file_uri('/assets/js/main.js'), array('jquery', 'lightbox-js'), VIRSION, true);
 
+    $spyShop_year = get_post_meta(get_the_ID(), "year", true);
+    $spyShop_month = get_post_meta(get_the_ID(), "month", true);
+    $spyShop_day = get_post_meta(get_the_ID(), "day", true);
+
+    wp_localize_script("custom-jquery-js", "n_date", array(
+        "year" => $spyShop_year,
+        "month" => $spyShop_month,
+        "day" => $spyShop_day,
+    ));
 
 }
 add_action('wp_enqueue_scripts', 'a2n_assets');
@@ -267,6 +276,7 @@ function a2n_page_template_banner()
                 background-image: url(<?php echo $thumbnail_url; ?>);
             }
         </style>
+
         <?php
     }
     if (is_page()) {
@@ -288,17 +298,9 @@ function a2n_page_template_banner()
                     ?>
                 }
             </style>
-        <?
+            <?php
         }
     }
 }
 
 add_action("wp_head", "a2n_page_template_banner", 11);
-
-function launcher_styles()
-{
-    if (is_page()) {
-
-    }
-}
-add_action("wp_head", "launcher_styles");

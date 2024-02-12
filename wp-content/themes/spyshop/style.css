@@ -875,17 +875,17 @@ figure {
 
 ::-webkit-selection {
   color: #fff;
-  background: #0bbbe6;
+  background: #ff2020;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #0bbbe6;
+  background: #ff2020;
 }
 
 ::selection {
   color: #fff;
-  background: #0bbbe6;
+  background: #ff2020;
 }
 
 #fh5co-aside {
@@ -896,7 +896,7 @@ figure {
   position: fixed;
   height: 100%;
   z-index: 1;
-  background-color: #0bbbe6;
+  background-color: #ff2020;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1029,7 +1029,7 @@ figure {
   font-size: 14px;
   color: #fff;
   border: none !important;
-  background: #0bbbe6;
+  background: #ff2020;
   color: #fff;
   text-transform: uppercase;
   border-top-right-radius: 100px;
@@ -1043,7 +1043,7 @@ figure {
 #fh5co-subscribe .form-group .btn:focus {
   outline: none;
   box-shadow: none !important;
-  background: #2fcef5;
+  background: #ff2020;
 }
 #fh5co-subscribe .form-group .tip {
   margin-top: 10px;
@@ -1116,7 +1116,7 @@ figure {
 #fh5co-social li a:active,
 #fh5co-social li a:focus {
   outline: none;
-  color: #0bbbe6;
+  color: #ff2020;
 }
 #fh5co-logo a {
   font-size: 48px;
