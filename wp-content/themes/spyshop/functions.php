@@ -35,23 +35,37 @@ add_action("after_setup_theme", "a2n_bootstrapping");
 // theme all assets 
 function a2n_assets()
 {
-    wp_enqueue_style("spyShop", get_stylesheet_uri(), null, VIRSION);
+
     // Enqueue Bootstrap CSS
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', null, '5.2.3');
     // enqueue fontawesome 
     wp_enqueue_style('fontawesome-css', get_template_directory_uri() . '/assets/css/fontawesome.min.css', null, '6.5.1');
+    // enqueue swiper slider 
+    wp_enqueue_style('swiper-css', get_template_directory_uri() . '/assets/css/swiper-bundle.min.css', null, '11.0.6');
     // enqueue lightbox 
     wp_enqueue_style('lightbox-css', get_template_directory_uri() . '/assets/css/lightbox.min.css', null, '2.11.4');
     // enqueue fontawesome 
     wp_enqueue_style('aos-css', get_template_directory_uri() . '/assets/css/aos.css', null, '2.3.1');
+    // enqueue iconmoon 
+    wp_enqueue_style("icomoon-css", get_theme_file_uri("/assets/css/icomoon.css"));
+
+    wp_enqueue_style("spyShop", get_stylesheet_uri(), null, VIRSION);
 
 
     // Enqueue Jquery
     wp_enqueue_script('jquery', true);
+
+    wp_enqueue_script("easing-jquery-js", get_theme_file_uri("/assets/js/jquery.easing.1.3.js"), array("jquery"), null, true);
+    wp_enqueue_script("bootstrap-jquery-js", get_theme_file_uri("/assets/js/bootstrap.min.js"), array("jquery"), null, true);
+    wp_enqueue_script("waypoint-jquery-js", get_theme_file_uri("/assets/js/jquery.waypoints.min.js"), array("jquery"), null, true);
+    wp_enqueue_script("countdown-jquery-js", get_theme_file_uri("/assets/js/simplyCountdown.js"), array("jquery"), null, true);
+    wp_enqueue_script("custom-jquery-js", get_theme_file_uri("/assets/js/custom.js"), array("jquery"), "0.1", true);
     // Enqueue Bootstrap JS
     wp_enqueue_script('bootstrap-bundle', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', null, '5.2.3', true);
     // enqueue fontawesome 
     wp_enqueue_script('fontawesome-js', get_template_directory_uri() . '/assets/js/fontawesome.min.js', null, '6.5.1', true);
+    // enqueue swiper slider 
+    wp_enqueue_style('swiper-js', get_template_directory_uri() . '/assets/css/swiper-bundle.min.js', array('jquery'), '11.0.6', true);
     // enqueue lightbox 
     wp_enqueue_script('lightbox-js', get_template_directory_uri() . '/assets/js/lightbox.min.js', array('jquery'), '2.11.4', true);
     // enqueue aos 
@@ -60,6 +74,8 @@ function a2n_assets()
     wp_enqueue_script('app-js', get_theme_file_uri('/assets/js/app.js'), null, VIRSION, true);
     // enqueue main 
     wp_enqueue_script('spyShop-main', get_theme_file_uri('/assets/js/main.js'), array('jquery', 'lightbox-js'), VIRSION, true);
+
+
 }
 add_action('wp_enqueue_scripts', 'a2n_assets');
 
@@ -183,6 +199,31 @@ function a2n_sidebar()
             'after_title' => '',
         )
     );
+
+    // launcher sidebar 
+    register_sidebar(
+        array(
+            'name' => __('launcher left', 'spyShop'),
+            'id' => 'launcher-left',
+            'description' => __('launcher left', 'spyShop'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget' => '</section>',
+            'before_title' => '<h2 class="widget-title">',
+            'after_title' => '</h2>',
+        )
+    );
+
+    register_sidebar(
+        array(
+            'name' => __('launcher right', 'spyShop'),
+            'id' => 'launcher-right',
+            'description' => __('launcher right', 'spyShop'),
+            'before_widget' => '<section id="%1$s" class="text-right widget %2$s">',
+            'after_widget' => '</section>',
+            'before_title' => '<h2 class="widget-title">',
+            'after_title' => '</h2>',
+        )
+    );
 }
 add_action('widgets_init', 'a2n_sidebar');
 
@@ -215,22 +256,27 @@ add_filter('protected_title_format', 'a2n_protected_title_change');
 function a2n_page_template_banner()
 {
     if (is_page()) {
+        $thumbnail_url = get_the_post_thumbnail_url(null, "large");
         ?>
         <style>
             .page_header {
                 background-color: #000;
             }
+
+            .home-side {
+                background-image: url(<?php echo $thumbnail_url; ?>);
+            }
         </style>
-    <?
+        <?php
     }
-    if (is_front_page()) {
+    if (is_page()) {
         if (current_theme_supports("custom-header")) {
             ?>
             <style>
                 .a2n_header .menu li>a,
                 .a2n_right_side ul li>a {
                     color: #<?php echo get_header_textcolor(); ?> !important;
-                    
+
                 }
 
                 .logo {
@@ -249,3 +295,10 @@ function a2n_page_template_banner()
 
 add_action("wp_head", "a2n_page_template_banner", 11);
 
+function launcher_styles()
+{
+    if (is_page()) {
+
+    }
+}
+add_action("wp_head", "launcher_styles");
