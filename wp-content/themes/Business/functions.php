@@ -127,22 +127,58 @@ function a2n_sidebar()
             'after_title' => '</h2></div>',
         )
     );
-    
-    // Home about area widgets 
 
+    // Home about area widgets start
+
+    //  about left widget
     register_sidebar(
         array(
-            'name' => __('About Area', 'a2n_business'),
+            'name' => __('About Area Image', 'a2n_business'),
             'id' => 'about_area-1',
-            'description' => __('Widgets in this area will be shown on all title and images', 'a2n_business'),
-            'before_widget' => '<div id="%1$s" class="about">',
-            'after_widget' => '</div">',
-            'before_title' => '<h2 class="card-header">',
-            'after_title' => '</h2></div>',
+            'description' => __('Widgets in this area will be shown on images of about area', 'a2n_business'),
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
         )
     );
 
+    // abouta tab widgets 
+    register_sidebar(
+        array(
+            'name' => __('About Area Tab One Content', 'a2n_business'),
+            'id' => 'about_area-tab-1',
+            'description' => __('Widgets in this area will be shown on images of about area', 'a2n_business'),
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => __('About Area Tab Two Content', 'a2n_business'),
+            'id' => 'about_area-tab-2',
+            'description' => __('Widgets in this area will be shown on images of about area', 'a2n_business'),
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => __('About Area Tab Three Content', 'a2n_business'),
+            'id' => 'about_area-tab-3',
+            'description' => __('Widgets in this area will be shown on images of about area', 'a2n_business'),
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
+        )
+    );
 
+    // Home about area widgets end
 
     // footer area widgets 
     register_sidebar(
@@ -247,8 +283,6 @@ function a2n_page_template_banner()
         $thumbnail_url = get_the_post_thumbnail_url(null, "large");
         ?>
         <style>
-           
-
             .page_header {
                 background-color: #000;
             }
@@ -294,7 +328,41 @@ function cc_mime_types($mimes)
 }
 add_filter('upload_mimes', 'cc_mime_types');
 
-// Create a Custom Post Type
+// Creates Custom Post Type for portfolio
+function custom_Services()
+{
+    register_post_type(
+        'services',
+        array(
+            'labels' => array(
+                'name' => ('Services'),
+                'singular_name' => ('Service'),
+                'add_new' => ('Add New Service'),
+                'add_new_item' => ('Add New Service'),
+                'edit_item' => ('Edit Service'),
+                'new_item' => ('New Service'),
+                'view_item' => ('View Service'),
+                'not_found' => ('Sorry, we cound\'n find the Service you are looking for.'),
+            ),
+            'menu_icon' => 'dashicons-hammer',
+            'public' => true,
+            'publicly_queryable' => true,
+            'exclude_from_search' => true,
+            'menu_position' => 4,
+            'has_archive' => true,
+            'hierarchial' => true,
+            'show_ui' => true,
+            'capability_type' => 'post',
+            'rewrite' => array('slag' => 'portfolio'),
+            'supports' => array('title', 'thumbnail', 'editor', 'custom-fields'),
+        )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'custom_Services');
+
+// Creates Custom Post Type for portfolio
 function custom_portfolios()
 {
     register_post_type(
@@ -320,7 +388,20 @@ function custom_portfolios()
             'show_ui' => true,
             'capability_type' => 'post',
             'rewrite' => array('slag' => 'portfolio'),
-            'supports' => array('title', 'thumbnail', 'editor'),
+            'supports' => array('title', 'thumbnail', 'editor', 'custom-fields'),
+        )
+    );
+    register_taxonomy(
+        'categories',
+        'portfolio',
+        array(
+            'label' => __('Categories'),
+            'hierarchical' => true,
+            'public' => true,
+            'show_ui' => true,
+            'show_in_nav_menus' => true,
+            'show_admin_column' => true,
+            'rewrite' => array('slug' => 'categories'),
         )
     );
     add_theme_support('post-thumbnails');
@@ -331,9 +412,10 @@ add_action('init', 'custom_portfolios');
 
 
 // Thumbnil Image Area
-add_theme_support('post-thumbnails', array('page', 'post', 'portfolio', ));
+add_theme_support('post-thumbnails', array('page', 'post', 'portfolio', 'service'));
 add_image_size('portfolio', 380, 300, true);
 add_image_size('post-thumbnails', 970, 350, true);
+add_image_size('service', 300, 300, true);
 
 
 function custom_nav_menu_css_class($classes, $item, $args, $depth)
@@ -353,3 +435,5 @@ function custom_nav_menu_link_attributes($atts, $item, $args, $depth)
     return $atts;
 }
 add_filter('nav_menu_link_attributes', 'custom_nav_menu_link_attributes', 10, 4);
+
+
