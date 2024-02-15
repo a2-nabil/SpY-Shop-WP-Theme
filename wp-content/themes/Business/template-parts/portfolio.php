@@ -1,58 +1,3 @@
-<?php
-$args = array(
-    'posts_per_page' => -1,
-    'post_type' => 'portfolio',
-    'post_status' => 'publish',
-    'order' => 'ASC',
-    'paged' => '',
-);
-
-$the_query = new WP_Query($args);
-
-if ($the_query->have_posts()):
-    ?>
-
-    <section id='body_area projects_area' class="heading-m">
-        <div class="container">
-            <div class="row gy-4">
-
-                <?php while ($the_query->have_posts()):
-                    $the_query->the_post();
-                    ?>
-                    <div class="col-md-4">
-                        <div class="card" style="overflow: hidden;">
-                            <div class="card-body">
-                                <?php the_post_thumbnail('project'); ?>
-                                <h2 class="card-title">
-                                    <?php the_title(); ?>
-                                </h2>
-                                <p class="card-text">
-                                    <?php the_excerpt(); ?>
-                                </p>
-                                <button class="btn primary_btn" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#Modal-<?php echo $i; ?>">View Project</button>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <?php
-
-                endwhile;
-                wp_reset_postdata(); ?>
-
-            </div>
-        </div>
-    </section>
-
-
-
-    <?php
-else:
-    echo ('Sorry, no portfolio published today, please try tomorrow');
-endif;
-?>
 <section id="portfolio" class="portfolio-area portfolio-three">
 
     <div class="section-title-five">
@@ -73,228 +18,135 @@ endif;
         </div>
 
     </div>
+    <?php
+    $args = array(
+        'posts_per_page' => -1,
+        'post_type' => 'portfolio',
+        'post_status' => 'publish',
+        'order' => 'ASC',
+        'paged' => '',
+    );
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="portfolio-menu text-center">
-                    <button data-filter="all" class="active">ALL WORK</button>
-                    <button data-filter="branding" class="">BRANDING</button>
-                    <button data-filter="marketing" class="">MARKETING</button>
-                    <button data-filter="planning" class="">PLANNING</button>
-                    <button data-filter="research" class="">RESEARCH</button>
+    $the_query = new WP_Query($args);
+
+    $all_categories = array();
+
+    if ($the_query->have_posts()):
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portfolio-menu text-center">
+                        <button data-filter="all" class="active">ALL WORK</button>
+                        <?php
+                        while ($the_query->have_posts()):
+                            $the_query->the_post();
+
+                            // Get the categories for the current portfolio item
+                            $categories = get_the_terms(get_the_ID(), 'categories');
+
+                            if ($categories && !is_wp_error($categories)) {
+                                foreach ($categories as $category) {
+                                    // Collect all unique categories
+                                    $all_categories[] = $category->slug;
+                                }
+                            }
+                        endwhile;
+
+                        // Display unique categories on buttons
+                        foreach (array_unique($all_categories) as $unique_category):
+                            ?>
+                            <button data-filter="<?php echo esc_attr($unique_category); ?>" class="">
+                                <?php echo esc_html($unique_category); ?>
+                            </button>
+                            <?php
+                        endforeach;
+                        ?>
+                    </div>
                 </div>
+            </div>
+
+            <div class="row grid">
+                <?php
+                $the_query = new WP_Query($args); // Reset the query to loop through posts again
+            
+                while ($the_query->have_posts()):
+                    $the_query->the_post();
+
+                    // Get the categories for the current portfolio item
+                    $categories = get_the_terms(get_the_ID(), 'categories');
+
+                    // Output the portfolio item HTML with data-filter attribute
+                    ?>
+                    <div class="col-lg-4 col-sm-6 <?php
+                    if ($categories && !is_wp_error($categories)) {
+                        foreach ($categories as $category) {
+                            echo esc_attr($category->slug) . '';
+                        }
+                    }
+                    ?> show" data-filter="<?php
+                     if ($categories && !is_wp_error($categories)) {
+                         foreach ($categories as $category) {
+                             echo esc_attr($category->slug) . '';
+                         }
+                     }
+                     ?>">
+                        <div class="portfolio-style-three">
+                            <div class="portfolio-image">
+                                <?php
+                                $thumbnailUrl = get_the_post_thumbnail_url(null, "large");
+                                the_post_thumbnail('portfolio');
+                                ?>
+                                <div class="
+              portfolio-overlay
+              d-flex
+              align-items-center
+              justify-content-center
+            ">
+                                    <div class="portfolio-content">
+                                        <div class="portfolio-icon">
+                                            <a class="image-popup-three glightbox3" href="
+                                            <?php
+                                            echo ($thumbnailUrl);
+                                            ?>">
+                                                <i class="lni lni-zoom-in"> </i>
+                                            </a>
+                                        </div>
+                                        <div class="portfolio-icon">
+                                            <a href="javascript:void(0)"> <i class="lni lni-link"> </i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-text">
+                                <h4 class="portfolio-title">
+                                    <a href="javascript:void(0)">
+                                        <?php the_title(); ?>
+                                    </a>
+                                </h4>
+                                <p class="text">
+                                    <?php the_excerpt(); ?>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <?php
+
+                endwhile;
+                wp_reset_postdata(); ?>
 
             </div>
+
+
+
         </div>
-
-        <div class="row grid">
-            <div class="col-lg-4 col-sm-6 branding-3 planning-3 show" data-filter="branding">
-                <div class="portfolio-style-three">
-                    <div class="portfolio-image">
-                        <img src="assets/images/portfolio/pf1.jpg" alt="image">
-                        <div class="
-              portfolio-overlay
-              d-flex
-              align-items-center
-              justify-content-center
-            ">
-                            <div class="portfolio-content">
-                                <div class="portfolio-icon">
-                                    <a class="image-popup-three glightbox3" href="assets/images/portfolio/pf1.jpg">
-                                        <i class="lni lni-zoom-in"> </i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-icon">
-                                    <a href="javascript:void(0)"> <i class="lni lni-link"> </i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-text">
-                        <h4 class="portfolio-title">
-                            <a href="javascript:void(0)">Graphics Design</a>
-                        </h4>
-                        <p class="text">
-                            Short description for the ones who look for something new.
-                            Awesome!
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-sm-6 show" data-filter="research">
-                <div class="portfolio-style-three">
-                    <div class="portfolio-image">
-                        <img src="assets/images/portfolio/pf2.jpg" alt="image">
-                        <div class="
-              portfolio-overlay
-              d-flex
-              align-items-center
-              justify-content-center
-            ">
-                            <div class="portfolio-content">
-                                <div class="portfolio-icon">
-                                    <a class="image-popup-three glightbox3" href="assets/images/portfolio/pf2.jpg">
-                                        <i class="lni lni-zoom-in"> </i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-icon">
-                                    <a href="javascript:void(0)"> <i class="lni lni-link"> </i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-text">
-                        <h4 class="portfolio-title">
-                            <a href="javascript:void(0)">Web Development</a>
-                        </h4>
-                        <p class="text">
-                            Short description for the ones who look for something new.
-                            Awesome!
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-sm-6 show" data-filter="marketing">
-                <div class="portfolio-style-three">
-                    <div class="portfolio-image">
-                        <img src="assets/images/portfolio/pf3.jpg" alt="image">
-                        <div class="
-              portfolio-overlay
-              d-flex
-              align-items-center
-              justify-content-center
-            ">
-                            <div class="portfolio-content">
-                                <div class="portfolio-icon">
-                                    <a class="image-popup-three glightbox3" href="assets/images/portfolio/pf3.jpg">
-                                        <i class="lni lni-zoom-in"> </i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-icon">
-                                    <a href="javascript:void(0)"> <i class="lni lni-link"> </i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-text">
-                        <h4 class="portfolio-title">
-                            <a href="javascript:void(0)">App Development</a>
-                        </h4>
-                        <p class="text">
-                            Short description for the ones who look for something new.
-                            Awesome!
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-sm-6 show" data-filter="planning">
-                <div class="portfolio-style-three">
-                    <div class="portfolio-image">
-                        <img src="assets/images/portfolio/pf4.jpg" alt="image">
-                        <div class="
-              portfolio-overlay
-              d-flex
-              align-items-center
-              justify-content-center
-            ">
-                            <div class="portfolio-content">
-                                <div class="portfolio-icon">
-                                    <a class="image-popup-three glightbox3" href="assets/images/portfolio/pf4.jpg">
-                                        <i class="lni lni-zoom-in"> </i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-icon">
-                                    <a href="javascript:void(0)"> <i class="lni lni-link"> </i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-text">
-                        <h4 class="portfolio-title">
-                            <a href="javascript:void(0)">Digital Marketing</a>
-                        </h4>
-                        <p class="text">
-                            Short description for the ones who look for something new.
-                            Awesome!
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-sm-6 show" data-filter="branding">
-                <div class="portfolio-style-three">
-                    <div class="portfolio-image">
-                        <img src="assets/images/portfolio/pf5.jpg" alt="image">
-                        <div class="
-              portfolio-overlay
-              d-flex
-              align-items-center
-              justify-content-center
-            ">
-                            <div class="portfolio-content">
-                                <div class="portfolio-icon">
-                                    <a class="image-popup-three glightbox3" href="assets/images/portfolio/pf5.jpg">
-                                        <i class="lni lni-zoom-in"> </i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-icon">
-                                    <a href="javascript:void(0)"> <i class="lni lni-link"> </i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-text">
-                        <h4 class="portfolio-title">
-                            <a href="javascript:void(0)">SEO Services</a>
-                        </h4>
-                        <p class="text">
-                            Short description for the ones who look for something new.
-                            Awesome!
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-sm-6 show" data-filter="marketing">
-                <div class="portfolio-style-three">
-                    <div class="portfolio-image">
-                        <img src="assets/images/portfolio/pf6.jpg" alt="image">
-                        <div class="
-              portfolio-overlay
-              d-flex
-              align-items-center
-              justify-content-center
-            ">
-                            <div class="portfolio-content">
-                                <div class="portfolio-icon">
-                                    <a class="image-popup-three glightbox3" href="assets/images/portfolio/pf6.jpg">
-                                        <i class="lni lni-zoom-in"> </i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-icon">
-                                    <a href="javascript:void(0)"> <i class="lni lni-link"> </i> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-text">
-                        <h4 class="portfolio-title">
-                            <a href="javascript:void(0)">Product Design</a>
-                        </h4>
-                        <p class="text">
-                            Short description for the ones who look for something new.
-                            Awesome!
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-</section>
+    </section>
+    <?php
+    else:
+        echo ('Sorry, no portfolio published today, please try tomorrow');
+    endif;
+    ?>

@@ -18,7 +18,7 @@
                         </h2>
                         <p>
                             <?php
-                            $serviceAreaText = get_post_meta(get_the_ID(), "serviceAreaText", true);
+                            $serviceAreaText = get_post_meta(get_the_ID(), "Service Area Text", true);
                             echo esc_html($serviceAreaText);
 
                             ?>
@@ -67,9 +67,7 @@
                             </div>
                         </div>
                     </div>
-
-
-
+                    
                     <?php
 
                 endwhile;

@@ -52,12 +52,20 @@
   });
   ("use strict");
 })();
-// aos js
-AOS.init();
-// hero slider js
-$(".carousel").carousel({
-  interval: 9000,
-});
+
 (function ($) {
-  $(document).ready(function () {});
+  $(document).ready(function () {
+    // Dynamic image for lightbox
+    // $(".image-popup-three").each(function () {
+    //   var image = $(this).find("img").attr("src");
+    //   $(this).attr("href", image);
+    // });
+
+    // aos js
+    AOS.init();
+    // hero slider js
+    $(".carousel").carousel({
+      interval: 9000,
+    });
+  });
 })(jQuery);

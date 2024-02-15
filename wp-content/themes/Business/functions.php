@@ -12,7 +12,11 @@ if (site_url()) {
 function a2n_bootstrapping()
 {
     load_theme_textdomain("a2n_business");
-    add_theme_support("post-thumbnails");
+    // Thumbnail Image Area
+    add_theme_support('post-thumbnails', array('page', 'post', 'portfolio', 'service'));
+    add_image_size('portfolio', 350, 280, true);
+    add_image_size('post-thumbnails', 970, 350, true);
+    add_image_size('service', 300, 300, true);
     add_theme_support("title-tag");
     $a2n_custom_header_details = array(
         'header-text' => true,
@@ -411,11 +415,7 @@ add_action('init', 'custom_portfolios');
 
 
 
-// Thumbnil Image Area
-add_theme_support('post-thumbnails', array('page', 'post', 'portfolio', 'service'));
-add_image_size('portfolio', 380, 300, true);
-add_image_size('post-thumbnails', 970, 350, true);
-add_image_size('service', 300, 300, true);
+
 
 
 function custom_nav_menu_css_class($classes, $item, $args, $depth)
