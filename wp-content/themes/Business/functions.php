@@ -15,6 +15,7 @@ function a2n_bootstrapping()
     // Thumbnail Image Area
     add_theme_support('post-thumbnails', array('page', 'post', 'portfolio', 'service'));
     add_image_size('portfolio', 350, 280, true);
+    add_image_size('post', 700, 500, true);
     add_image_size('post-thumbnails', 970, 350, true);
     add_image_size('service', 300, 300, true);
     add_theme_support("title-tag");
@@ -46,10 +47,11 @@ function a2n_assets()
     wp_enqueue_style('fontawesome-css', get_template_directory_uri() . '/assets/css/fontawesome.min.css', null, '6.5.1');
     // enqueue lineicons 
     wp_enqueue_style('lineicons-css', get_template_directory_uri() . '/assets/css/lineicons.css', null, VIRSION);
+    wp_enqueue_style('lineicons-font', get_template_directory_uri() . '/assets/fonts/LineIcons.woff2', null, VIRSION);
     // enqueue glightbox 
     wp_enqueue_style('glightbox-css', get_template_directory_uri() . '/assets/css/glightbox.min.css', null, '3.2.0');
-    // enqueue swiper slider 
-    wp_enqueue_style('swiper-css', get_template_directory_uri() . '/assets/css/swiper-bundle.min.css', null, '11.0.6');
+    // enqueue tiny slider 
+    wp_enqueue_style('tiny-slider-css', get_template_directory_uri() . '/assets/css/tiny-slider.css', null, VIRSION);
     // enqueue fontawesome 
     wp_enqueue_style('aos-css', get_template_directory_uri() . '/assets/css/aos.css', null, '2.3.1');
     // enqueue font
@@ -69,8 +71,8 @@ function a2n_assets()
     wp_enqueue_script('fontawesome-js', get_template_directory_uri() . '/assets/js/fontawesome.min.js', null, '6.5.1', true);
     // enqueue glightbox
     wp_enqueue_script('glightbox-js', get_template_directory_uri() . '/assets/js/glightbox.min.js', null, '3.2.0', true);
-    // enqueue swiper slider 
-    wp_enqueue_style('swiper-js', get_template_directory_uri() . '/assets/css/swiper-bundle.min.js', array('jquery'), '11.0.6', true);
+    // enqueue tiny slider 
+    wp_enqueue_script('tiny-slider-js', get_template_directory_uri() . '/assets/js/tiny-slider.js', null, VIRSION, true);
     // enqueue aos 
     wp_enqueue_script('aos-js', get_template_directory_uri() . '/assets/js/aos.js', array('jquery'), '2.3.1', true);
     // enqueue app 
@@ -147,7 +149,7 @@ function a2n_sidebar()
         )
     );
 
-    // abouta tab widgets 
+    // about tab widgets 
     register_sidebar(
         array(
             'name' => __('About Area Tab One Content', 'a2n_business'),
@@ -184,13 +186,69 @@ function a2n_sidebar()
 
     // Home about area widgets end
 
+    // Video area widgets start
+    register_sidebar(
+        array(
+            'name' => __('Video Area text', 'a2n_business'),
+            'id' => 'video_area-text',
+            'description' => __('Widgets in this area will be shown on text of video area', 'a2n_business'),
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
+        )
+    );
+    register_sidebar(
+        array(
+            'name' => __('Video Area image', 'a2n_business'),
+            'id' => 'video_area-image',
+            'description' => __('Widgets in this area will be shown on image of video area', 'a2n_business'),
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
+        )
+    );
+    // Video area widgets end
+
+    // Portfolio area widgets start
+    register_sidebar(
+        array(
+            'name' => __('Portfolio Area text', 'a2n_business'),
+            'id' => 'portfolio_area-text',
+            'description' => __('Widgets in this area will be shown on text of Portfolio area', 'a2n_business'),
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
+        )
+    );
+
+
+
+
+    // Portfolio area widgets end
+    // clients area widgets start
+    register_sidebar(
+        array(
+            'name' => __('Clients Area image', 'a2n_business'),
+            'id' => 'clients_area-image',
+            'description' => __('Widgets in this area will be shown on images of clients area', 'a2n_business'),
+            'before_widget' => '<div class="single-image">',
+            'after_widget' => '</div>',
+            'before_title' => '',
+            'after_title' => '',
+        )
+    );
+    // clients area widgets end
+
     // footer area widgets 
     register_sidebar(
         array(
             'name' => __('footer_1', 'a2n_business'),
             'id' => 'footer_1',
             'description' => __('Widgets in this area will be shown on Footer', 'a2n_business'),
-            'before_widget' => '<div id="%1$s" class="widget company-intro-widget">',
+            'before_widget' => '<div id="%1$s" class="footer-widget f-about">',
             'after_widget' => '</div>',
             'before_title' => '',
             'after_title' => '',
@@ -201,7 +259,7 @@ function a2n_sidebar()
             'name' => __('footer_2', 'a2n_business'),
             'id' => 'footer_2',
             'description' => __('Widgets in this area will be shown on Footer', 'a2n_business'),
-            'before_widget' => '<div id="%1$s" class="widget course-links-widget">',
+            'before_widget' => '<div id="%1$s" class="footer-widget f-link">',
             'after_widget' => '</div>',
             'before_title' => '<h5 class="widget-title">',
             'after_title' => '</h5>',
@@ -212,7 +270,7 @@ function a2n_sidebar()
             'name' => __('footer_3', 'a2n_business'),
             'id' => 'footer_3',
             'description' => __('Widgets in this area will be shown on Footer', 'a2n_business'),
-            'before_widget' => '<div id="%1$s" class="widget latest-news-widget">',
+            'before_widget' => '<div id="%1$s" class="footer-widget f-link">',
             'after_widget' => '</div>',
             'before_title' => '<h5 class="widget-title">',
             'after_title' => '</h5>',
@@ -223,34 +281,25 @@ function a2n_sidebar()
             'name' => __('footer_4', 'a2n_business'),
             'id' => 'footer_4',
             'description' => __('Widgets in this area will be shown on Footer', 'a2n_business'),
-            'before_widget' => '<div id="%1$s" class="widget newsletter-widget">',
+            'before_widget' => '<div id="%1$s" class="footer-widget newsletter">',
             'after_widget' => '</div>',
             'before_title' => '<h5 class="widget-title">',
             'after_title' => '</h5>',
         )
     );
+    // scroll to top widget 
     register_sidebar(
         array(
-            'name' => __('footer_bottom_left', 'a2n_business'),
-            'id' => 'footer_bottom_left',
-            'description' => __('Widgets in this area will be shown on Footer', 'a2n_business'),
-            'before_widget' => '<div id="%1$s" class="widget copy-right-text">',
-            'after_widget' => '</div>',
+            'name' => __('Scroll To Top Icon ', 'a2n_business'),
+            'id' => 'scroll-top_icon',
+            'description' => __('Widgets in this area will be shown on bottom', 'a2n_business'),
+            'before_widget' => '<a href="#" class="scroll-top btn-hover" style="display: flex;">',
+            'after_widget' => '</a>',
             'before_title' => '',
             'after_title' => '',
         )
     );
-    register_sidebar(
-        array(
-            'name' => __('footer_bottom_right', 'a2n_business'),
-            'id' => 'footer_bottom_right',
-            'description' => __('Widgets in this area will be shown on Footer', 'a2n_business'),
-            'before_widget' => '<div id="%1$s" class="widget terms-privacy footer_right">',
-            'after_widget' => '</div>',
-            'before_title' => '',
-            'after_title' => '',
-        )
-    );
+
 
 }
 add_action('widgets_init', 'a2n_sidebar');

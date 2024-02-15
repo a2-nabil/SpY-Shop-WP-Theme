@@ -1,3 +1,4 @@
+<!-- services area start  -->
 <section id="services" class="services-area services-eight">
     <div class="section-title-five">
         <div class="container">
@@ -33,7 +34,7 @@
 
     <?php
     $args = array(
-        'posts_per_page' => -1,
+        'posts_per_page' => 6,
         'post_type' => 'services',
         'post_status' => 'publish',
         'order' => 'ASC',
@@ -41,6 +42,7 @@
     );
 
     $the_query = new WP_Query($args);
+
 
     if ($the_query->have_posts()):
         ?>
@@ -51,11 +53,12 @@
 
                 <?php while ($the_query->have_posts()):
                     $the_query->the_post();
+                    $ServiceIcon = get_post_meta(get_the_ID(), "Service icon", true);
                     ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-services">
                             <div class="service-icon">
-                                <i class="lni lni-capsule"></i>
+                                <i class="lni lni-<?php echo esc_attr($ServiceIcon);?>"></i>
                             </div>
                             <div class="service-content">
                                 <h4>
@@ -67,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <?php
 
                 endwhile;
@@ -76,7 +79,7 @@
             </div>
         </div>
     </section>
-
+    <!-- services area end  -->
 
 
     <?php

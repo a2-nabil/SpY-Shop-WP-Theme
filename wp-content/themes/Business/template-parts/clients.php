@@ -1,12 +1,13 @@
-<section class="video-area video-one">
+<!-- clients area start  -->
+<div id="clients" class="brand-area section">
 
     <div class="section-title-five">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="content">
-                        <h6>Our Intro Video</h6>
-                        <h2 class="fw-bold">Watch Our Promo Video</h2>
+                        <h6>Meet our Clients</h6>
+                        <h2 class="fw-bold">Our Awesome Clients</h2>
                         <p>
                             There are many variations of passages of Lorem Ipsum available,
                             but the majority have suffered alteration in some form.
@@ -20,18 +21,18 @@
     </div>
 
     <div class="container">
-
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="video-content text-center">
-                    <img src="assets/images/video/video-bg.png" alt="Video">
-                    <a class="video-popup glightbox" href="https://www.youtube.com/watch?v=NJbXptdalP0">
-                        <i class="lni lni-play"></i>
-                    </a>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-12">
+                <div class="clients-logos">
+                    <?php
+                    if (is_active_sidebar('clients_area-image')) {
+                        dynamic_sidebar('clients_area-image');
+                    }
+                    ?>
                 </div>
             </div>
         </div>
-
     </div>
+</div>
 
-</section>
+<!-- clients area end  -->

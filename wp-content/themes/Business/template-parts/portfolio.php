@@ -1,3 +1,4 @@
+<!-- portfolio area start  -->
 <section id="portfolio" class="portfolio-area portfolio-three">
 
     <div class="section-title-five">
@@ -5,11 +6,24 @@
             <div class="row">
                 <div class="col-12">
                     <div class="content">
-                        <h6>Our Portfolio</h6>
-                        <h2 class="fw-bold">Our Recent Works</h2>
+                        <h6>
+                            <?php
+                            $portfolioAreaTitle = get_post_meta(get_the_ID(), "Portfolio Area Title", true);
+                            echo esc_html($portfolioAreaTitle);
+                            ?>
+                        </h6>
+                        <h2 class="fw-bold">
+                        <?php
+                            $portfolioAreaMainTitle = get_post_meta(get_the_ID(), "Portfolio Area Main Title", true);
+                            echo esc_html($portfolioAreaMainTitle);
+                            ?>
+                        </h2>
                         <p>
-                            There are many variations of passages of Lorem Ipsum available,
-                            but the majority have suffered alteration in some form.
+                            <?php
+                            if (is_active_sidebar('portfolio_area-text')) {
+                                dynamic_sidebar('portfolio_area-text');
+                            }
+                            ?>
                         </p>
                     </div>
                 </div>
@@ -145,6 +159,7 @@
 
         </div>
     </section>
+    <!-- portfolio area end  -->
     <?php
     else:
         echo ('Sorry, no portfolio published today, please try tomorrow');

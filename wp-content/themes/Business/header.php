@@ -84,7 +84,7 @@
                 <h5 class="social-title">Follow Us On</h5>
                 <ul>
                     <li>
-                        <a href="javascript:void(0)"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
                     </li>
                     <li>
                         <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
