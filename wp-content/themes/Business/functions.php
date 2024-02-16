@@ -85,6 +85,11 @@ function a2n_assets()
 add_action('wp_enqueue_scripts', 'a2n_assets');
 
 
+// custom post type function here 
+include_once('inc/custom_post-functions.php');
+
+
+
 // sidebar widgets 
 
 function a2n_sidebar()
