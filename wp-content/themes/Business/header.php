@@ -8,6 +8,18 @@
 </head>
 
 <body <?php body_class(); ?>>
+    <div class="a2n_mouse" id="a2n_mouse">
+        <div class="a2n_arrow_div">
+            <span class="a2n-arrow"></span>
+            <span class="a2n-arrow a2n-arrow2"></span>
+        </div>
+        <svg viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path
+                d="M75,100 C88.8071187,100 100,88.8071187 100,75 C100,61.1928813 88.8071187,50 75,50 C61.1928813,50 50,61.1928813 50,75 C50,88.8071187 61.1928813,100 75,100 Z">
+            </path>
+        </svg>
+    </div>
     <!-- header section start  -->
     <header class="a2n_header navbar-area navbar-nine">
         <div class="container">

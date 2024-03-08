@@ -56,6 +56,8 @@ function a2n_assets()
     wp_enqueue_style('aos-css', get_template_directory_uri() . '/assets/css/aos.css', null, '2.3.1');
     // enqueue font
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap', array(), null, 'all');
+    // enqueue mouse helper  
+    wp_enqueue_style('mouse-helper', get_template_directory_uri() . '/assets/css/mouse_helper.css', null, VIRSION);
 
 
     wp_enqueue_style("a2n_business", get_stylesheet_uri(), null, VIRSION);
@@ -79,6 +81,8 @@ function a2n_assets()
     wp_enqueue_script('app-js', get_theme_file_uri('/assets/js/app.js'), array('jquery'), VIRSION, true);
     // enqueue custom 
     wp_enqueue_script('custom-js', get_theme_file_uri('/assets/js/custom.js'), null, VIRSION, true);
+    // enqueue mouse helper  
+    wp_enqueue_script('mouse-helper', get_theme_file_uri('/assets/js/mouse-helper.js'), array('jquery'), VIRSION, true);
 
 
 }
