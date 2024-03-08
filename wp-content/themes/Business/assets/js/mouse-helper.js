@@ -82,7 +82,7 @@ jQuery(document).ready(function ($) {
 
     window.requestAnimationFrame(move);
 
-    $("#tns1-iw").on("mouseenter", function () {
+    $(".testimonial-slider").on("mouseenter", function () {
       hovered = false;
       pulsed = false;
       activeButton = $(this);
