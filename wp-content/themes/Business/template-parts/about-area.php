@@ -7,7 +7,7 @@ $aboutTabThree = get_post_meta(get_the_ID(), "About Tab Three", true);
 $aboutTabOneText = get_post_meta(get_the_ID(), "About Tab One Text", true);
 ?>
 <!-- about area start  -->
-<section class="about-area about-five">
+<section id="about" class="about-area about-five">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-12">

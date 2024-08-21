@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>janets review card</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .a2n-reviw_card {
+        padding: 18px 32px;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 2px 2px 15px 0px #00000029;
+        border-radius: 12.7px;
+      }
+      .a2n-reviw_card .a2n_course_details {
+        display: flex;
+        align-items: center;
+        gap: 19px;
+        border-bottom: 1.59px solid #e6e6e6;
+        padding-bottom: 19px;
+      }
+      .a2n-reviw_card .a2n_course_details .course_img {
+        width: fit-content;
+      }
+      .a2n-reviw_card .a2n_course_details .course_img img {
+        border: 1.59px solid #7ba631;
+        box-shadow: 0px 6.35px 6.35px 0px #00000014;
+        width: 63.51px;
+        height: 63.51px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .a2n-reviw_card .a2n_course_details .course_title {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 23.81px;
+        color: #151424;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-width: 235px;
+      }
+      .a2n-reviw_card .a2n_course_details .course_title a {
+        font-weight: inherit;
+        color: inherit;
+      }
+      .a2n-reviw_card .review_contents p {
+        margin: 19px 0;
+        font-family: "Roboto", sans-serif;
+        font-size: 19.05px;
+        font-weight: 400;
+        line-height: 28.58px;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 115px;
+      }
+      .a2n-reviw_card .review_contents .user_name {
+        margin: 0 0 6px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 23.81px;
+      }
+      .a2n-reviw_card .a2n_meta_details {
+        display: flex;
+        align-items: center;
+        gap: 19px;
+      }
+      .a2n-reviw_card .a2n_meta_details h6 {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 23.81px;
+      }
+      .a2n-reviw_card .a2n_meta_details h6 span {
+        font-size: 16px;
+        font-weight: 500;
+        padding-right: 6px;
+      }
+      .a2n_popular-course .a2n-ratings-container,
+      .a2n_popular-course .a2n-ratings-container .bp_filled_stars {
+        color: #f8ba01;
+      }
+      .a2n_popular-course .bp_filled_stars:before,
+      .a2n_popular-course .bp_blank_stars:before {
+        font-size: 14px;
+      }
+      @media (max-width: 767px) {
+        .a2n-reviw_card {
+          max-width: 385px;
+          margin: 0 auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="a2n-reviw_card">
+      <div class="a2n_course_details">
+        <div class="course_img">
+          <img
+            src="https://www.janets.org.uk/wp-content/uploads/2018/01/19-Microsoft-Office-2016-Excel-Beginer-to-Advanced-1024x615-1.webp"
+            alt="course"
+          />
+        </div>
+        <h2 class="course_title">
+          <a href="#"
+            >Teaching Assistant Complete Course (TA, SEN, Autism, ADHD &
+            Dyslexia) - CPD Certified</a
+          >
+        </h2>
+      </div>
+      <div class="review_contents">
+        <p>
+          This is an excellent course. The content is up to date and
+          informative, and it is very simple to comprehend. Overall a great
+          experience.
+        </p>
+        <h5 class="user_name">Paige Reed</h5>
+        <div class="a2n_meta_details">
+          <div class="a2n-ratings-container bp_blank_stars">
+            <div style="width: 80%" class="bp_filled_stars"></div>
+          </div>
+          <h6><span>4.9</span> Rating</h6>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

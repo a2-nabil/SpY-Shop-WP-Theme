@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php
+get_header();
+?>
 <!-- post card section start -->
 <div class="a2n_post-section">
     <div class="container mt-5">
@@ -18,17 +20,18 @@
                             </h1>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">
-                                <?php echo get_the_date(); ?> by
+                                <?php __("Posted on", "a2n_business");
+                                echo get_the_date(); ?> by
                                 <?php the_author(); ?>
                             </div>
                             <!-- Post categories-->
-                            <?php echo get_the_tag_list("<ul class=\"list-unstyled a2n_tags\"><li class=\"badge bg-secondary text-decoration-none link-light\">", "</li><li class=\"badge bg-secondary text-decoration-none link-light\">", "</li></ul>"); ?>
+                            <?php echo get_the_category_list(" "); ?>
                             <!-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a> -->
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4 a2n-single_img">
                             <?php
-                            if (!post_password_required() && has_post_thumbnail()) {
+                            if (has_post_thumbnail()) {
                                 the_post_thumbnail("large", array("class" => "img-fluid rounded"));
                             }
                             ?>
@@ -103,45 +106,72 @@
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
-                    <div id="a2n_sidebar">
-                        <div class="side_bar card mb-4">
-                            <?php
-                            if (is_active_sidebar('sidebar-1')) {
-                                dynamic_sidebar('sidebar-1');
-                            }
-                            ?>
-                        </div>
-                        <div class="side_bar card mb-4">
-                            <?php
-                            if (is_active_sidebar('sidebar-2')) {
-                                dynamic_sidebar('sidebar-2');
-                            }
-                            ?>
-                        </div>
-                        <div class="side_bar card mb-4">
-                            <?php
-                            if (is_active_sidebar('sidebar-3')) {
-                                dynamic_sidebar('sidebar-3');
-                            }
-                            ?>
-                        </div>
-                        <div class="side_bar card mb-4">
-                            <?php
-                            if (is_active_sidebar('sidebar-4')) {
-                                dynamic_sidebar('sidebar-4');
-                            }
-                            ?>
-                        </div>
+                    <!-- Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                        <?php echo get_search_form(); ?>
 
+                            <!-- <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Enter search term..."
+                                    aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                            </div> -->
+
+                        </div>
+                    </div>
+                    <!-- Categories widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <?php
+                                    $categories = get_categories(
+                                        array(
+                                            'hide_empty' => false,
+                                            'orderby' => 'name',
+                                            'order' => 'ASC',
+                                        )
+                                    );
+
+                                    if (!empty($categories) && !is_wp_error($categories)) {
+                                        $half_count = ceil(count($categories) / 2); // Calculate half the number of categories
+                                
+                                        echo '<ul class="list-unstyled">';
+                                        foreach (array_slice($categories, 0, $half_count) as $category) {
+                                            echo '<li><a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a></li>';
+                                        }
+                                        echo '</ul>';
+                                    }
+                                    ?>
+                                </div>
+                                <div class="col-sm-6">
+                                    <?php
+                                    if (!empty($categories) && !is_wp_error($categories)) {
+                                        $half_count = ceil(count($categories) / 2); // Calculate half the number of categories
+                                
+                                        echo '<ul class="list-unstyled">';
+                                        foreach (array_slice($categories, $half_count) as $category) {
+                                            echo '<li><a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a></li>';
+                                        }
+                                        echo '</ul>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Side Widget</div>
+                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to
+                            use, and feature the Bootstrap 5 card component!</div>
                     </div>
                 </div>
-
-            </div>
-
-        <?php } ?>
+            <?php } ?>
+        </div>
     </div>
 </div>
-</div>
-
 <!-- post card section end -->
 <?php get_footer(); ?>

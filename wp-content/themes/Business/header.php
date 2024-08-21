@@ -85,10 +85,10 @@
             <div class="sidebar-menu">
                 <h5 class="menu-title">Quick Links</h5>
                 <ul>
-                    <li><a href="javascript:void(0)">About Us</a></li>
-                    <li><a href="javascript:void(0)">Our Team</a></li>
-                    <li><a href="javascript:void(0)">Latest News</a></li>
-                    <li><a href="javascript:void(0)">Contact Us</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#blog">Latest News</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
 

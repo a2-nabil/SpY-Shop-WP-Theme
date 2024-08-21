@@ -34,7 +34,7 @@
     </div>
     <?php
     $args = array(
-        'posts_per_page' => -1,
+        'posts_per_page' => 9,
         'post_type' => 'portfolio',
         'post_status' => 'publish',
         'order' => 'ASC',
@@ -121,7 +121,7 @@
                                         <div class="portfolio-icon">
                                             <a class="image-popup-three glightbox3" href="
                                             <?php
-                                            echo ($thumbnailUrl);
+                                            echo $thumbnailUrl;
                                             ?>">
                                                 <i class="lni lni-zoom-in"> </i>
                                             </a>

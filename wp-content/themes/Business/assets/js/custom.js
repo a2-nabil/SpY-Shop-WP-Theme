@@ -8,11 +8,20 @@ navbarTogglerNine.addEventListener("click", function () {
 let sidebarLeft = document.querySelector(".sidebar-left");
 let overlayLeft = document.querySelector(".overlay-left");
 let sidebarClose = document.querySelector(".sidebar-close .close");
+let sideBarBtns = document.querySelectorAll(".sidebar-menu ul li a");
 
 overlayLeft.addEventListener("click", function () {
   sidebarLeft.classList.toggle("open");
   overlayLeft.classList.toggle("open");
 });
+
+sideBarBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    sidebarLeft.classList.toggle("open");
+    overlayLeft.classList.toggle("open");
+  });
+});
+
 sidebarClose.addEventListener("click", function () {
   sidebarLeft.classList.remove("open");
   overlayLeft.classList.remove("open");

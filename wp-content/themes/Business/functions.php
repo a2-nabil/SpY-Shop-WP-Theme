@@ -34,6 +34,7 @@ function a2n_bootstrapping()
     register_nav_menu("primary_menu", __("Primary Menu", "a2n_business"));
     register_nav_menu("footer_menu", __("Footer Menu", "a2n_business"));
     add_theme_support("dashicons");
+    add_theme_support( 'html5', array( 'search-form' ) );
 
 }
 add_action("after_setup_theme", "a2n_bootstrapping");
@@ -58,7 +59,11 @@ function a2n_assets()
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap', array(), null, 'all');
     // enqueue mouse helper  
     wp_enqueue_style('mouse-helper', get_template_directory_uri() . '/assets/css/mouse_helper.css', null, VIRSION);
+    // enqueue single-blog 
+    wp_enqueue_style('single-blog', get_template_directory_uri() . '/assets/css/singleBlog.css', null, VIRSION);
 
+    // review card css
+    wp_enqueue_style('review-card', get_template_directory_uri() . '/assets/css/review-card.css', null, '1.0');
 
     wp_enqueue_style("a2n_business", get_stylesheet_uri(), null, VIRSION);
 
@@ -90,7 +95,7 @@ add_action('wp_enqueue_scripts', 'a2n_assets');
 
 
 // custom post type function here 
-include_once('inc/custom_post-functions.php');
+include_once ('inc/custom_post-functions.php');
 
 
 
@@ -373,9 +378,9 @@ function a2n_page_template_banner()
                         echo "display: none;";
                     }
                     ?>
-                }
-            </style>
-            <?php
+                                                    }
+                                                </style>
+                                                <?php
         }
     }
 }
@@ -472,10 +477,6 @@ function custom_portfolios()
 add_action('init', 'custom_portfolios');
 
 
-
-
-
-
 function custom_nav_menu_css_class($classes, $item, $args, $depth)
 {
     $classes[] = 'nav-item';
@@ -494,4 +495,54 @@ function custom_nav_menu_link_attributes($atts, $item, $args, $depth)
 }
 add_filter('nav_menu_link_attributes', 'custom_nav_menu_link_attributes', 10, 4);
 
+function a2n_add_class_to_category_list($list)
+{
+    // Use regular expression to find all anchor tags and add a class to them
+    $list = preg_replace('/<a /', '<a class="badge bg-secondary text-decoration-none link-light" ', $list);
+    return $list;
+}
+add_filter('the_category', 'a2n_add_class_to_category_list');function a2n_highlight_search_results($text) {
+    if (is_search()) {
+        // Get the search query and escape it for use in a regex pattern
+        $query = get_search_query();
+        $escaped_query = preg_quote($query, '/');
+        
+        // Split the search query into individual words
+        $words = explode(' ', $escaped_query);
+        
+        // Join the words with the regex OR operator
+        $pattern = '/(' . join('|', $words) . ')/i';
+        
+        // Perform the replacement with a span tag
+        $text = preg_replace($pattern, '<span class="a2n_highlight">$0</span>', $text);
+    }
+    return $text;
+}
 
+// Add the filter to highlight search terms in content, excerpt, and title
+add_filter('the_content', 'a2n_highlight_search_results');
+add_filter('the_excerpt', 'a2n_highlight_search_results');
+add_filter('the_title', 'a2n_highlight_search_results');
+
+
+function a2n_pagination()
+{
+    global $wp_query;
+    echo paginate_links(
+        array(
+            'current' => max(1, get_query_var('paged')),
+            'total' => $wp_query->max_num_pages,
+            'type' => 'list'
+        )
+    );
+}
+
+
+function register_custom_elementor_widget() {
+    // Include the widget file
+    require_once( get_stylesheet_directory() . '/elementor-widgets/reviews-widget.php' );
+
+    // Register the widget
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Custom_Elementor_Widget() );
+}
+add_action( 'elementor/widgets/widgets_registered', 'register_custom_elementor_widget' );
