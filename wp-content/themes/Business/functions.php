@@ -34,7 +34,7 @@ function a2n_bootstrapping()
     register_nav_menu("primary_menu", __("Primary Menu", "a2n_business"));
     register_nav_menu("footer_menu", __("Footer Menu", "a2n_business"));
     add_theme_support("dashicons");
-    add_theme_support( 'html5', array( 'search-form' ) );
+    add_theme_support('html5', array('search-form'));
 
 }
 add_action("after_setup_theme", "a2n_bootstrapping");
@@ -64,6 +64,14 @@ function a2n_assets()
 
     // review card css
     wp_enqueue_style('review-card', get_template_directory_uri() . '/assets/css/review-card.css', null, '1.0');
+
+    
+    // enqueue lineicons 
+    // wp_enqueue_style('icofont-eot', get_template_directory_uri() . '/assets/css/icofont.eot', null, VIRSION);
+    wp_enqueue_style('icofont-css', get_template_directory_uri() . '/assets/css/icofont.min.css', null, VIRSION);
+    wp_enqueue_style('icofont-font', get_template_directory_uri() . '/assets/fonts/icofont.woff2', null, VIRSION);
+    // blog style css
+    wp_enqueue_style('blog-style', get_template_directory_uri() . '/assets/css/style.css', null, '1.0');
 
     wp_enqueue_style("a2n_business", get_stylesheet_uri(), null, VIRSION);
 
@@ -95,7 +103,7 @@ add_action('wp_enqueue_scripts', 'a2n_assets');
 
 
 // custom post type function here 
-include_once ('inc/custom_post-functions.php');
+include_once('inc/custom_post-functions.php');
 
 
 
@@ -378,9 +386,9 @@ function a2n_page_template_banner()
                         echo "display: none;";
                     }
                     ?>
-                                                    }
-                                                </style>
-                                                <?php
+                }
+            </style>
+            <?php
         }
     }
 }
@@ -501,18 +509,20 @@ function a2n_add_class_to_category_list($list)
     $list = preg_replace('/<a /', '<a class="badge bg-secondary text-decoration-none link-light" ', $list);
     return $list;
 }
-add_filter('the_category', 'a2n_add_class_to_category_list');function a2n_highlight_search_results($text) {
+add_filter('the_category', 'a2n_add_class_to_category_list');
+function a2n_highlight_search_results($text)
+{
     if (is_search()) {
         // Get the search query and escape it for use in a regex pattern
         $query = get_search_query();
         $escaped_query = preg_quote($query, '/');
-        
+
         // Split the search query into individual words
         $words = explode(' ', $escaped_query);
-        
+
         // Join the words with the regex OR operator
         $pattern = '/(' . join('|', $words) . ')/i';
-        
+
         // Perform the replacement with a span tag
         $text = preg_replace($pattern, '<span class="a2n_highlight">$0</span>', $text);
     }
@@ -538,11 +548,12 @@ function a2n_pagination()
 }
 
 
-function register_custom_elementor_widget() {
+function register_custom_elementor_widget()
+{
     // Include the widget file
-    require_once( get_stylesheet_directory() . '/elementor-widgets/reviews-widget.php' );
+    require_once(get_stylesheet_directory() . '/elementor-widgets/reviews-widget.php');
 
     // Register the widget
-    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Custom_Elementor_Widget() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new \Custom_Elementor_Widget());
 }
-add_action( 'elementor/widgets/widgets_registered', 'register_custom_elementor_widget' );
+add_action('elementor/widgets/widgets_registered', 'register_custom_elementor_widget');

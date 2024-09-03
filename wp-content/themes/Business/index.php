@@ -1,191 +1,190 @@
 <?php
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package SA_E-Learning
+ */
+
 get_header();
-
-$args = array(
-    'posts_per_page' => 3,
-    'post_type' => 'post',
-    'post_status' => 'publish',
-    'order' => 'ASC',
-    'paged' => '',
-);
-
-$the_query = new WP_Query($args);
 ?>
-<!-- post card section start -->
-<div id="a2n_projects" class="a2n_post-section">
-    <div class="container mt-5">
-        <div class="row">
-            <?php
-            $i = 1;
-
-            if ($the_query->have_posts()) {
 
 
-                while ($the_query->have_posts()) {
-                    $the_query->the_post();
-                    ?>
-                    <div class="col-lg-4 col-md-6 mt-4">
-                        <div class="a2n_nxt-container" data-aos="fade-up">
-                            <div class="nxt-start">
-                                <?php
-                                if (has_post_thumbnail()) {
 
-                                    echo get_the_post_thumbnail(null, "Large");
 
-                                    // printf('<a href="%s" data-lightbox="image" data-title="%s">', $post_thumbnail_url, $post_tt);
-                        
-                                    //  $post_tt = get_the_title();
-                                    // echo '<a class="a2n_popup" href="#" data-lightbox="image" data-title="' . $post_tt . '">';
-                                    // the_post_thumbnail("large", array("class" => "img-fluid"));
-                                    // echo '</a>';
-                                }
-                                ?>
-                            </div>
 
-                            <div class="nxt-contents">
-                                <a class="nxt_title" href="<?php the_permalink(); ?>" target="blank">
-                                    <?php echo the_title(); ?>
-                                </a>
-                                <div class="nxt_ratings">
-                                    <h5>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
-                                            fill="none">
-                                            <g clip-path="url(#clip0_802_5446)">
-                                                <path
-                                                    d="M7.57832 7.58269C8.04243 7.58269 8.48753 7.76706 8.8157 8.09523C9.14388 8.4234 9.32824 8.8685 9.32824 9.33261L9.32708 10.2058C9.44724 12.3483 7.79706 13.4169 4.73645 13.4169C1.68634 13.4169 0 12.3623 0 10.2362V9.33261C0 8.8685 0.184366 8.4234 0.51254 8.09523C0.840714 7.76706 1.28581 7.58269 1.74992 7.58269H7.57832ZM12.2448 7.58269C12.7089 7.58269 13.154 7.76706 13.4822 8.09523C13.8103 8.4234 13.9947 8.8685 13.9947 9.33261V9.94683C14.0997 11.8688 12.6414 12.8325 9.9763 12.8325C9.61465 12.8325 9.27458 12.815 8.95668 12.78C9.58315 12.2013 9.91796 11.4168 9.9168 10.4251L9.90922 10.1732L9.91155 9.33261C9.91187 9.00149 9.84153 8.67411 9.70523 8.37234C9.56893 8.07057 9.36981 7.80136 9.12117 7.58269H12.2454H12.2448ZM4.66645 0.583008C5.44012 0.583008 6.1821 0.890346 6.72917 1.43741C7.27623 1.98448 7.58357 2.72646 7.58357 3.50013C7.58357 4.27379 7.27623 5.01577 6.72917 5.56284C6.1821 6.1099 5.44012 6.41724 4.66645 6.41724C3.89279 6.41724 3.15081 6.1099 2.60374 5.56284C2.05668 5.01577 1.74934 4.27379 1.74934 3.50013C1.74934 2.72646 2.05668 1.98448 2.60374 1.43741C3.15081 0.890346 3.89279 0.583008 4.66645 0.583008ZM10.4995 1.74962C11.1183 1.74962 11.7118 1.99544 12.1494 2.43301C12.5869 2.87057 12.8327 3.46404 12.8327 4.08285C12.8327 4.70166 12.5869 5.29513 12.1494 5.73269C11.7118 6.17025 11.1183 6.41608 10.4995 6.41608C9.88071 6.41608 9.28725 6.17025 8.84968 5.73269C8.41212 5.29513 8.1663 4.70166 8.1663 4.08285C8.1663 3.46404 8.41212 2.87057 8.84968 2.43301C9.28725 1.99544 9.88071 1.74962 10.4995 1.74962Z"
-                                                    fill="#ff2020" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_802_5446">
-                                                    <rect width="14" height="14" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>
-                                            <?php the_author(); ?>
-                                        </p>
-                                    </h5>
-                                    <h5>
-                                        <span>
-                                            <?php echo get_the_date(); ?>
-                                        </span>
-                                        <svg onload="init()" width="14" height="14" xmlns="http://www.w3.org/2000/svg"
-                                            aria-label="Calendar" role="img" viewBox="0 0 512 512">
-                                            <path
-                                                d="M512 455c0 32-25 57-57 57H57c-32 0-57-25-57-57V128c0-31 25-57 57-57h398c32 0 57 26 57 57z"
-                                                fill="#e0e7ec" />
-                                            <path
-                                                d="M484 0h-47c2 4 4 9 4 14a28 28 0 1 1-53-14H124c3 4 4 9 4 14A28 28 0 1 1 75 0H28C13 0 0 13 0 28v157h512V28c0-15-13-28-28-28z"
-                                                fill="#ff2020" />
-
-                                            <g fill="#fff">
-                                                <circle cx="470" cy="142" r="14" />
-                                                <circle cx="470" cy="100" r="14" />
-                                                <circle cx="427" cy="142" r="14" />
-                                                <circle cx="427" cy="100" r="14" />
-                                                <circle cx="384" cy="142" r="14" />
-                                                <circle cx="384" cy="100" r="14" />
-                                            </g>
-
-                                            <text id="month" x="32" y="164" fill="#fff" font-family="monospace"
-                                                font-size="140px" style="text-anchor: left">FEB</text>
-
-                                            <text id="day" x="256" y="400" fill="#ff2020" font-family="monospace"
-                                                font-size="256px" style="text-anchor: middle">29</text>
-
-                                            <text id="weekday" x="256" y="480" fill="#ff2020" font-family="monospace"
-                                                font-size="64px" style="text-anchor: middle">Sunday</text>
-                                        </svg>
-                                    </h5>
-                                </div>
-                                <div class="nxt-divider"></div>
-                                <div class="nxt-end">
-                                    <a href="#" class="nxt_button" data-bs-toggle="modal"
-                                        data-bs-target="#Modal-<?php echo $i; ?>">View details</a>
-                                    <a href="<?php the_permalink(); ?>" target="blank" class="nxt_button">View Post</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="Modal-<?php echo $i; ?>" tabindex="-1"
-                            aria-labelledby="ModalLabel-<?php echo $i; ?>" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="fs-5 ModalLabel-<?php echo $i; ?>" id="exampleModalLabel">
-                                            <?php the_title(); ?>
-                                        </h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body text-center">
-                                        <?php
-                                        if (!post_password_required() && has_post_thumbnail()) {
-                                            the_post_thumbnail("large", array("class" => "img-fluid rounded"));
-                                        }
-                                        ?>
-                                        <div class="my-4">
-                                            Tags:
-                                            <?php echo get_the_tag_list("<ul class=\"list-unstyled a2n_tags\"><li class=\"badge bg-secondary link-light\">", "</li><li class=\"badge bg-secondary link-light\">", "</li></ul>");
-                                            echo get_the_category_list(" ");
-                                            echo get_the_tag_list();
-                                            ?>
-                                        </div>
-                                        <div class="mt-1">
-                                            <?php
-                                            the_excerpt();
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php
-                    $i++;
-                    
-                }
-                wp_reset_postdata();
-                ?>
-            </div>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-8">
-                    <?php
-                    the_posts_pagination(
-                        array(
-                            "screen_reader_text" => '',
-                            "prev_text" => "Prev",
-                            "next_text" => "Next"
-                        )
-                    );
-                    ?>
-            </div>
-        </div>
-    </div>
+<!-- Page Header section start here -->
+<div class="pageheader-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="pageheader-content text-center">
+					<h2>Our Blog Classic Posts</h2>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb justify-content-center">
+							<li class="breadcrumb-item"><a href="/">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Blog classic</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<!-- post card section end -->
+<!-- Page Header section ending here -->
+
+
+<!-- blog section start here -->
+<div class="blog-section padding-tb section-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-8 col-12">
+				<article>
+					<div class="section-wrapper">
+						<div id="primary"
+							class="site-main row row-cols-1 row-cols-sm-2 row-cols-md-2 justify-content-center g-4">
+
+							<?php
+							if (have_posts()):
+
+
+								/* Start the Loop */
+								while (have_posts()):
+									the_post();
+									?>
+									<div class="col">
+										<div class="post-item">
+											<div class="post-inner">
+												<div class="post-thumb">
+													<?php
+													if (has_post_thumbnail()) {
+														$thumbnail_url = get_the_post_thumbnail_url();
+														?>
+														<a href="<?php the_permalink(); ?>"><img
+																src="<?php echo get_the_post_thumbnail_url() ?>"
+																alt="blog thumb"></a>
+														<?php
+													} else {
+														?>
+														<a href="<?php the_permalink(); ?>"><img
+																src="<?php echo get_template_directory_uri() ?>/assets/images/blog/02.jpg"
+																alt="blog thumb"></a>
+														<?php
+													}
+													?>
+												</div>
+												<div class="post-content">
+													<a href="<?php the_permalink(); ?>">
+														<h4><?php the_title(); ?></h4>
+													</a>
+													<div class="meta-post">
+														<ul class="lab-ul">
+															<li><i class="icofont-ui-user"></i><?php echo get_the_author(); ?>
+															</li>
+															<li><i class="icofont-calendar"></i><?php echo get_the_date(); ?>
+															</li>
+														</ul>
+													</div>
+													<p><?php echo the_excerpt(); ?></p>
+												</div>
+												<div class="post-footer">
+													<div class="pf-left">
+														<a href="<?php the_permalink(); ?>" class="lab-btn-text">Read more
+															<i class="icofont-external-link"></i></a>
+													</div>
+													<div class="pf-right">
+														<i class="icofont-comment"></i>
+														<span class="comment-count"><?php echo get_comments_number(); ?></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<?php
+
+
+								endwhile;
+
+								// the_posts_navigation();
+
+							else:
+
+								get_template_part('template-parts/content', 'none');
+
+							endif;
+							?>
+
+						</div>
+						<?php
+						global $wp_query;
+						$pages = paginate_links(array(
+							'total' => $wp_query->max_num_pages,
+							'prev_text' => '<i class="icofont-rounded-left"></i>',
+							'next_text' => '<i class="icofont-rounded-right"></i>',
+							'type' => 'array',
+						));
+
+						if (is_array($pages) && !empty($pages)) {
+							echo '<ul class="default-pagination lab-ul">';
+							foreach ($pages as $page) {
+								if (strpos($page, 'current') !== false) {
+									echo '<li><a class="active">' . $page . '</a></li>';
+								} else {
+									echo '<li>' . $page . '</li>';
+								}
+							}
+							echo '</ul>';
+						}
+						?>
+					</div>
+				</article>
+			</div>
+			<div class="col-lg-4 col-12">
+				<aside>
+					<div class="widget widget-search">
+						<form action="/" class="search-wrapper">
+							<input type="text" name="s" placeholder="Search...">
+							<input type="hidden" name="post_type" value="post">
+							<button type="submit"><i class="icofont-search-2"></i></button>
+						</form>
+					</div>
+					<div class="widget widget-category">
+						<div class="widget-header">
+							<h5 class="title">Post Category</h5>
+						</div>
+						<ul class="widget-wrapper">
+							<?php
+							$categories = get_categories();
+							if (!empty($categories) && !is_wp_error($categories)) {
+
+								foreach ($categories as $category) {
+									?>
+									<li><a class="d-flex flex-wrap justify-content-between"
+											href="<?php echo get_category_link($category->term_id); ?>">
+											<span><i
+													class="icofont-double-right"></i><?php echo $category->name; ?></span><span><?php echo $category->count; ?></span>
+										</a></li>
+									<?php
+								}
+
+							}
+							?>
+						</ul>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- blog section ending here -->
+
+
 <?php
-    }else {
-        echo ('Sorry, no posts found today, please try tomorrow');
-    }
-?>
-
-
-
-<script type="text/ecmascript">< ![CDATA[
-        function init() {
-            var time = new Date();
-            var locale = "en-gb";
-
-            var DD = time.getDate();
-            var DDD = time.toLocaleString(locale, { weekday: "long" });
-            var MMM = time.toLocaleString(locale, { month: "short" }).toUpperCase();
-
-            document.getElementById("day").textContent = DD;
-            document.getElementById("weekday").textContent = DDD;
-            document.getElementById("month").textContent = MMM;
-            document.getElementsById("date").textContent = MM;
-        }
-    ]] ></script>
-<?php get_footer(); ?>
+// get_sidebar();
+get_footer();
